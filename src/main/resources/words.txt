@@ -1,0 +1,8 @@
+Storm is a distributed real-time computation system for processing fast, large streams of data. Storm in Hadoop helps capture new business opportunities with low-latency dashboards, security alerts, and operational enhancements integrated with other applications running in their Hadoop cluster. Enterprises use Storm to prevent certain outcomes or to optimize their objectives. A storm cluster has three daemons. 
+
+Nimbus
+Supervisor
+UI
+
+Storm users define topologies for how to process the data when it comes streaming in from the spout.
+Apache Storm is a free and open source distributed realtime computation system.

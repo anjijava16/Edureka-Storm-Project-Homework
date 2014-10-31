@@ -1,0 +1,1 @@
+Storm is a distributed real-time computation system for processing fast, large streams of data. Storm in Hadoop helps capture new business opportunities with low-latency dashboards, security alerts, and operational enhancements integrated with other applications running in their Hadoop cluster. 
