@@ -2,7 +2,6 @@ package com.edureka.storm.trident.operator;
 
 import java.util.List;
 
-import com.packtpub.storm.trident.model.DiagnosisEvent;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,9 +23,9 @@ public class WordNotMatchFilter extends BaseFilter {
     	
         String word = (String) tuple.getValue(0);
         if(words.contains(word)){
-        	return true;
-        }else{
         	return false;
+        }else{
+        	return true; //only keep if new word
         }
         
 //        Integer code = Integer.parseInt(diagnosis.diagnosisCode);

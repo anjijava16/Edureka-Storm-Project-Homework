@@ -23,16 +23,18 @@ public class LogReadEventEmitter implements Emitter<Long>, Serializable {
     	br = newBufferedReader();
     }
     private BufferedReader newBufferedReader(){
-    	return new BufferedReader(new InputStreamReader(ClassLoader.getSystemClassLoader().getResourceAsStream("words.txt")));
+    	return new BufferedReader(
+    			new InputStreamReader(
+    					ClassLoader.getSystemClassLoader().getResourceAsStream("words.txt")));
     }
+    
     
     @Override
     public void emitBatch(TransactionAttempt tx, Long coordinatorMeta
     		, TridentCollector collector) {
-//    	List<Object> lines = Lists.newArrayList();
     	String line;
     	try {
-    		for(int i=0;i<20;i++){
+    		for(int i=0;i<8;i++){
     			line = br.readLine();
     			if(line==null){
     				br = newBufferedReader();

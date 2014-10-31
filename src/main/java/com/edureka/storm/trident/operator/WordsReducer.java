@@ -21,40 +21,35 @@ package com.edureka.storm.trident.operator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.packtpub.storm.trident.operator.HourAssignment;
+import com.edureka.storm.trident.model.WordNotSeenRecord;
 
-import storm.trident.operation.BaseFunction;
-import storm.trident.operation.CombinerAggregator;
-import storm.trident.operation.TridentCollector;
+import storm.trident.operation.ReducerAggregator;
 import storm.trident.tuple.TridentTuple;
 
 
-public class WordCountCount 
+public class WordsReducer 
 //extends BaseFunction
-implements CombinerAggregator<Long> 
+implements ReducerAggregator<WordNotSeenRecord> 
 {
 	private static final long serialVersionUID = 1L;
-    private static final Logger LOG = LoggerFactory.getLogger(WordCountCount.class);
+    private static final Logger LOG = LoggerFactory.getLogger(WordsReducer.class);
     
     @Override
-    public Long init(TridentTuple tuple) {
-        return 1L;
+    public WordNotSeenRecord init() {
+        return null;
     }
 
-    @Override
-    public Long combine(Long val1, Long val2) {
-    	System.out.println(val1+" "+val2);
-        return val1 + val2;
+	@Override
+    public WordNotSeenRecord reduce(WordNotSeenRecord curr, TridentTuple tuple) {
+		WordNotSeenRecord wordNotSeen = curr;
+		if(wordNotSeen==null){
+			String tupleVal = (String) tuple.getValueByField("wordtime");
+			String[] splitted = tupleVal.split(":");
+			wordNotSeen = new WordNotSeenRecord(
+					splitted[0],new Long(splitted[1])
+			);
+		}
+		return wordNotSeen;
     }
 
-    @Override
-    public Long zero() {
-        return 0L;
-    }
-    
-//	@Override
-//    public void execute(TridentTuple tuple, TridentCollector collector) {
-//		String word = (String) tuple.getValue(0);
-//    }
-    
 }
